@@ -1,0 +1,56 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python 3",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"postCreateCommand": "bash .devcontainer/post_create.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"charliermarsh.ruff",
+				"tamasfe.even-better-toml",
+				"streetsidesoftware.code-spell-checker"
+			],
+			"settings": {
+				"cSpell.language": "en-GB",
+				"files.insertFinalNewline": true,
+				"files.trimTrailingWhitespace": true,
+				"editor.formatOnSave": true,
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": true
+				},
+				"python.defaultInterpreterPath": "./.venv/bin/python",
+				"python.formatting.provider": "black",
+				"python.formatting.blackArgs": [
+					"--no-color"
+				],
+				"python.linting.flake8Enabled": false,
+				"python.linting.mypyEnabled": true,
+				"python.linting.mypyPath": "./.venv/bin/dmypy",
+				"python.linting.mypyArgs": [
+					"run",
+					"--",
+					"--ignore-missing-imports",
+					"--show-column-numbers",
+					"--no-pretty",
+					"--python-executable",
+					"./.venv/bin/python"
+				],
+				"python.testing.pytestEnabled": true,
+				"python.testing.unittestEnabled": false,
+				"python.testing.autoTestDiscoverOnSaveEnabled": true,
+				"python.analysis.autoImportCompletions": true,
+				"python.analysis.indexing": true,
+				"ruff.path": [
+					"./.venv/bin/ruff"
+				]
+			}
+		}
+	},
+	"mounts": [
+		"source=${localWorkspaceFolderBasename}-venv,target=${containerWorkspaceFolder}/.venv,type=volume"
+	]
+}
